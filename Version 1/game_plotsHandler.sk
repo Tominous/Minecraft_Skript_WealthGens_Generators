@@ -76,6 +76,6 @@ function game_plotsHandler_plotBlockLocation(location: location) :: location:
 	set {_location}'s z coords to (floor({_location}'s z coords))
 	return {_location}
 
-#function debug():
-#	loop {game_plotsHandler_plotsData::*}:
-#		send "%loop-index%  ->  %loop-value%" to all players
+function debug():
+	loop {game_plotsHandler_plotsData::*}:
+		send "%loop-index%  ->  %loop-value%" to all players
