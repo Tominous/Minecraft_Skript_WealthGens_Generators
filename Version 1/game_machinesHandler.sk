@@ -47,9 +47,9 @@ function game_machinesHandler_machines_plotData_addData(machineLocationText: tex
 function game_machinesHandler_machines_plotData_removeData(machineLocationText: text, machineLocationPlot: text):
 	set {_machinePlotMachinesListAmount} to (stringDatasAPI_getData({game_machinesHandler_plotData::%{_machineLocationPlot}%}, "PLOT_MACHINES_AMOUNT") parsed as number)
 	set {_machinePlotMachinesListAmount} to (check [{_machinePlotMachinesListAmount} is set] ? {_machinePlotMachinesListAmount} : 0)
-#	send "Remain Machines In Plot: %({_machinePlotMachinesListAmount} - 1)%" to all players
+	send "Remain Machines In Plot: %({_machinePlotMachinesListAmount} - 1)%" to all players
 	if ({_machinePlotMachinesListAmount} - 1) <= 0:
-#		send "&bMachine: PLOT DATA CLEARED" to all players
+		send "&bMachine: PLOT DATA CLEARED" to all players
 		delete {game_machinesHandler_plotData::%{_machineLocationPlot}%}
 		stop
 	set {_machinePlotMachinesListText} to stringDatasAPI_getData({game_machinesHandler_plotData::%{_machineLocationPlot}%}, "PLOT_MACHINES_LIST")
@@ -200,11 +200,11 @@ function game_machinesHandler_getPlotActiveMachineStats(machineLocationPlot: tex
 			add loop-value to {_returnData::*}
 	return {_returnData::*}
 
-#function deleteAllM():
-#	delete {game_machinesHandler_machineData::*}
-#	delete {game_machinesHandler_playerData::*}
-#	delete {game_machinesHandler_plotData::*}
+function deleteAllM():
+	delete {game_machinesHandler_machineData::*}
+	delete {game_machinesHandler_playerData::*}
+	delete {game_machinesHandler_plotData::*}
 
-#function debugM():
-#	loop {game_machinesHandler_plotData::*}:
-#		send "%loop-index% | %loop-value%" to all players
+function debugM():
+	loop {game_machinesHandler_plotData::*}:
+		send "%loop-index% | %loop-value%" to all players
