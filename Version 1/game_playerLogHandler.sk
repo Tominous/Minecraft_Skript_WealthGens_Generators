@@ -8,7 +8,7 @@ function game_playerLogHandler_newLog(playerUUID: text, logType: text, logValue:
 	set {_currentLogIndex} to ({_previousLogIndexSize} + 1)
 	set {_deleteLogIndex} to ({_previousLogIndexSize} - 20)
 
-#	send "S: %{_previousLogIndexSize}% -> %{-game_playerLogHandler::%{_playerUUID}%_%{_logType}%_LOG_INDEX_TOTAL}% -> %check [{-game_playerLogHandler::%{_playerUUID}%_%{_logType}%_LOG_INDEX_TOTAL} is set]%" to all players
+	send "S: %{_previousLogIndexSize}% -> %{-game_playerLogHandler::%{_playerUUID}%_%{_logType}%_LOG_INDEX_TOTAL}% -> %check [{-game_playerLogHandler::%{_playerUUID}%_%{_logType}%_LOG_INDEX_TOTAL} is set]%" to all players
 
 	set {-game_playerLogHandler::%{_playerUUID}%_%{_logType}%_LOG_INDEX_TOTAL} to {_currentLogIndex}
 	set {-game_playerLogHandler::%{_playerUUID}%_%{_logType}%_LOG::%{_currentLogIndex}%} to {_logValue}
