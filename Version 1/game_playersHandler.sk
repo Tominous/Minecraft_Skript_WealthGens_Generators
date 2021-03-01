@@ -79,7 +79,7 @@ function game_playersHandler_setPlayerExperience(player: offline player, newExpe
 	if {_displayReason} is not "":
 		set {_experienceChangeDisplay} to (check [{_experienceChange} < 0] ? "-%game_displayHandler_getNumberDigitDisplay({_experienceChange})%" : "+%game_displayHandler_getNumberDigitDisplay({_experienceChange})%")
 		send "&d%{_experienceChangeDisplay}% Experience (%{_displayReason}%)" to {_player}
-#	game_groupsHandler_addExperienceToGroup({_playerGroupId}, {_experienceChange})
+	game_groupsHandler_addExperienceToGroup({_playerGroupId}, {_experienceChange})
 	if {_newExperience} < 0:
 		set {game_playersHandler_playerData::%{_playerUUID}%} to stringDatasAPI_removeData({game_playersHandler_playerData::%{_playerUUID}%}, "EXPERIENCE")
 	else:
@@ -263,7 +263,7 @@ function game_playersHandler_updateTopBalanceList():
 		set {_playerBalancePartJson} to json form of {_playerBalancePart::*}
 		set {_null} to text from url "URL_REMOVED?action=UPLOAD&json-text=%{_playerBalancePartJson}%"
 	set {_sortedPlayerBalanceJsonText} to text from url "URL_REMOVED"
-#	send {_sortedPlayerBalanceJsonText} to all players
+	send {_sortedPlayerBalanceJsonText} to all players
 	map json {_sortedPlayerBalanceJsonText} to {game_playersHandler_balanceTopList::*}
 	game_playersHandler_updateTopBalanceList_leaderboardDisplay()
 	send "&bTop balance leaderboard has been updated!" to all players
@@ -305,8 +305,8 @@ function game_playersHandler_updatePlayerSidebar(player: offline player):
 	set {_playerLevelProgressData::*} to game_playersHandler_getPlayerExperienceProgress({_player})
 	set {_playerLevelProgressPercentage} to ({_playerLevelProgressData::1} / {_playerLevelProgressData::2} * 100)
 	add "&6✣ &fLevel: &6%{_playerLevel}% &f(&6%floor({_playerLevelProgressPercentage})%%%&f)" to {_sidebarLinesDisplay::*}
-#	add "&a✣ &fLevel: &a0" to {_sidebarLinesDisplay::*}
-#	add "&a   &fProgress: &a0%%" to {_sidebarLinesDisplay::*}
+	add "&a✣ &fLevel: &a0" to {_sidebarLinesDisplay::*}
+	add "&a   &fProgress: &a0%%" to {_sidebarLinesDisplay::*}
 	add "" to {_sidebarLinesDisplay::*}
 	set {_playerBalance} to game_playersHandler_getPlayerBalance({_player})
 	set {_playerTokens} to game_playersHandler_getPlayerTokens({_player})
@@ -321,7 +321,7 @@ function game_playersHandler_updatePlayerSidebar(player: offline player):
 	add "&a☣ &fYour Machines: &a%{_playerOwnedMachines}%/%{_playerMaximumMachines}%" to {_sidebarLinesDisplay::*}
 	add "" to {_sidebarLinesDisplay::*}
 	set {_playerPlot} to game_plotsHandler_checkLocationInPlot(game_plotsHandler_newPlotSettings({-game_dataHandler::PLOT_SETTING_ROAD_SIZE}, {-game_dataHandler::PLOT_SETTING_PLOT_SIZE}), ({_player}'s location))
-#	set {_playerPlot} to (check [{_playerPlot} is "ON_ROAD"] ? "&6Road" : {_playerPlot})
+	set {_playerPlot} to (check [{_playerPlot} is "ON_ROAD"] ? "&6Road" : {_playerPlot})
 	set {_playerPlotMaximumGenerators} to game_generatorsHandler_generators_plotData_getPlotMaximumGeneratorsAmount({_playerPlot})
 	set {_playerPlotGenerators} to game_generatorsHandler_generators_plotData_getPlotGeneratorsAmount({_playerPlot})
 	set {_playerPlotMaximumMachines} to game_machinesHandler_machines_plotData_getPlotMaximumMachinesAmount({_playerPlot})
