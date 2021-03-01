@@ -58,7 +58,7 @@ function game_playerControlPanelHandler_panelGUI(controlPanelViewer: offline pla
 		format a gui slot 47 of {_controlPanelViewer} with ARROW named "&cPrevious Page (%{_page}%/%{_categoryPages}%)" to run function game_playerControlPanelHandler_panelGUI({_controlPanelViewer}, {_controlPanelTarget}, {_category}, ({_page} - 1))
 	else:
 		format a gui slot 47 of {_controlPanelViewer} with black glass named "&f" to do nothing
-#	format a gui slot 49 of {_controlPanelViewer} with BARRIER named "&cBack to Main Menu" to close then run function game_playerControlPanelHandler_panelGUI({_controlPanelViewer}, {_controlPanelTarget}, "MAIN")
+	format a gui slot 49 of {_controlPanelViewer} with BARRIER named "&cBack to Main Menu" to close then run function game_playerControlPanelHandler_panelGUI({_controlPanelViewer}, {_controlPanelTarget}, "MAIN")
 	if {_page} < {_categoryPages}:
 		format a gui slot 51 of {_controlPanelViewer} with ARROW named "&cNext Page (%{_page}%/%{_categoryPages}%)" to run function game_playerControlPanelHandler_panelGUI({_controlPanelViewer}, {_controlPanelTarget}, {_category}, ({_page} + 1))
 	else:
@@ -110,11 +110,11 @@ function game_playerControlPanelHandler_panelGUI_editPlot(controlPanelViewer: of
 	game_playerControlPanelHandler_guiBasic({_controlPanelViewer}, {_controlPanelTarget})
 	format a gui slot 49 of {_controlPanelViewer} with BARRIER named "&cBack to Plot List" to close then run function game_playerControlPanelHandler_panelGUI({_controlPanelViewer}, {_controlPanelTarget}, "PLOT_LIST")
 	format a gui slot 22 of {_controlPanelViewer} with {_plotDisplayItem} to do nothing
-#	format a gui slot 29 of {_controlPanelViewer} with DYE:1 named "&cPickup Machine" with lore "||&7Feature on cooldown,||&7please wait a while||&7before using this||&7again!" to do nothing
-#	format a gui slot 33 of {_controlPanelViewer} with GOLDEN_INGOT named "&eUpgrade Machine" with lore "||&cYou are not allowed||&cto upgrade machines.||&f" to do nothing
-#	while game_cooldownHandler_checkCooldownReady("%{_controlPanelViewer}'s UUID%_FEATURE_INTERACTION", (10 ticks)) is false:
-#		wait 5 ticks
-#	format a gui slot 29 of {_controlPanelViewer} with DYE:1 named "&cPickup Machine" with lore "||&eRemove the placed||&emachine and return||&eit to your inventory.||&f" to run function game_playerControlPanelHandler_panelGUI_editMachine_runAction({_controlPanelViewer}, {_controlPanelTarget}, {_machineLocationText}, "REMOVE_MACHINE")
+	format a gui slot 29 of {_controlPanelViewer} with DYE:1 named "&cPickup Machine" with lore "||&7Feature on cooldown,||&7please wait a while||&7before using this||&7again!" to do nothing
+	format a gui slot 33 of {_controlPanelViewer} with GOLDEN_INGOT named "&eUpgrade Machine" with lore "||&cYou are not allowed||&cto upgrade machines.||&f" to do nothing
+	while game_cooldownHandler_checkCooldownReady("%{_controlPanelViewer}'s UUID%_FEATURE_INTERACTION", (10 ticks)) is false:
+		wait 5 ticks
+	format a gui slot 29 of {_controlPanelViewer} with DYE:1 named "&cPickup Machine" with lore "||&eRemove the placed||&emachine and return||&eit to your inventory.||&f" to run function game_playerControlPanelHandler_panelGUI_editMachine_runAction({_controlPanelViewer}, {_controlPanelTarget}, {_machineLocationText}, "REMOVE_MACHINE")
 
 function game_playerControlPanelHandler_panelGUI_editGenerator_runAction(controlPanelViewer: offline player, controlPanelTarget: offline player, generatorLocationText: text, action: text):
 	game_cooldownHandler_newCooldown("%{_controlPanelViewer}'s UUID%_FEATURE_INTERACTION")
@@ -140,7 +140,7 @@ function game_playerControlPanelHandler_panelGUI_editGenerator_playerRemoveGener
 		close {_controlPanelViewer}'s inventory
 		stop
 	game_generatorsHandler_removePlayerGenerator({_generatorLocationText})
-#	send "RBI-PRE: %{_generatorLocation}% %{_generatorLocationText}%" to all players
+	send "RBI-PRE: %{_generatorLocation}% %{_generatorLocationText}%" to all players
 	set block at {_generatorLocation} to air
 	give {_generatorItem} to {_controlPanelViewer}
 	send "&eYou have removed a &f%{_generatorName}%&e! &e(&fLevel %{_generatorData::2}%&e)" to {_controlPanelViewer}
